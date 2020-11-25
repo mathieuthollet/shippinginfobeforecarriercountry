@@ -4,9 +4,17 @@ Displays info before carrier in purchase page, enabled or disabled with country 
 
 ## How to install
 
+In admin, choose "Modules and services" and then "Add a new module".
+
+Choose the file "shippinginfobeforecarriercountry.zip" and click on "Upload this module".
 
 ## How to use
 
+In admin, choose "Modules and services", and then look for the module "Shipping info before carrier with country condition".
+
+Click on the "Configure" button.
+
+Choose if the info box is active, configure its content, and check the countries you want the info box to be displayed for.
 
 ## Support
 

@@ -33,7 +33,7 @@ class ShippingInfoBeforeCarrierCountry extends Module
     private $html = '';
 
     protected $config_form = false;
-    protected $support_url = 'https://addons.prestashop.com/contact-form.php?id_product=';  // TODO
+    protected $support_url = 'https://addons.prestashop.com/contact-form.php?id_product=50445';
 
     public function __construct()
     {
@@ -43,7 +43,7 @@ class ShippingInfoBeforeCarrierCountry extends Module
         $this->author = 'Mathieu Thollet';
         $this->need_instance = 0;
         $this->bootstrap = true;
-        $this->module_key = ''; // TODO
+        $this->module_key = '994e0e0bd626020148aad4794cff8cec';
 
         parent::__construct();
 
