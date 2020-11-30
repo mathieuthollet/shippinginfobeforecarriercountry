@@ -227,6 +227,7 @@ class ShippingInfoBeforeCarrierCountry extends Module
             'id_country' => $id_country,
         ];
         Configuration::updateValue('SHIPPINGINFOBEFORECARRIERCOUNTRY_CONFIG', json_encode($configuration, JSON_HEX_QUOT | JSON_HEX_TAG));
+        $this->setSuccessMessage($this->l('Settings have been saved.'));
     }
 
 
@@ -264,5 +265,16 @@ class ShippingInfoBeforeCarrierCountry extends Module
                 }
             }
         }
+    }
+
+
+    /**
+     * Sets success message
+     * @param $message
+     */
+    protected function setSuccessMessage($message)
+    {
+        $this->context->smarty->assign('message', $message);
+        $this->html .= $this->context->smarty->fetch($this->local_path . 'views/templates/admin/alert-success.tpl');
     }
 }
