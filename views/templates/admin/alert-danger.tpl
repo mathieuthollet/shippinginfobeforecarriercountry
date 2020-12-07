@@ -23,6 +23,6 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 
-<p class="alert alert-success">
+<p class="alert alert-danger">
     {$message}{* HTML content, no escape necessary *}
 </p>

@@ -213,8 +213,14 @@ class ShippingInfoBeforeCarrierCountry extends Module
         $active = Tools::getValue('active');
         $shipping_info = [];
         $id_country = [];
+        $errorMessage = '';
         foreach ($this->context->controller->getLanguages() as $lang) {
-            $shipping_info[$lang['id_lang']] = Tools::getValue('shipping_info_' . $lang['id_lang']);
+            $message = Tools::getValue('shipping_info_' . $lang['id_lang']);
+            if ($message == '') {
+                $errorMessage .= ($errorMessage != '' ? '<br>' : '') . sprintf($this->l('You must enter the shipping information message for lang %s.'), $lang['name']);
+            } else {
+                $shipping_info[$lang['id_lang']] = Tools::getValue('shipping_info_' . $lang['id_lang']);
+            }
         }
         foreach (Country::getCountries($this->context->language->id, true) as $country) {
             if (Tools::getValue('id_country_' . $country['id_country'])) {
@@ -226,8 +232,12 @@ class ShippingInfoBeforeCarrierCountry extends Module
             'shipping_info' => $shipping_info,
             'id_country' => $id_country,
         ];
-        Configuration::updateValue('SHIPPINGINFOBEFORECARRIERCOUNTRY_CONFIG', json_encode($configuration, JSON_HEX_QUOT | JSON_HEX_TAG));
-        $this->setSuccessMessage($this->l('Settings have been saved.'));
+        if ($errorMessage != '') {
+            $this->setErrorMessage($errorMessage);
+        } else {
+            Configuration::updateValue('SHIPPINGINFOBEFORECARRIERCOUNTRY_CONFIG', json_encode($configuration, JSON_HEX_QUOT | JSON_HEX_TAG));
+            $this->setSuccessMessage($this->l('Settings have been saved.'));
+        }
     }
 
 
@@ -276,5 +286,16 @@ class ShippingInfoBeforeCarrierCountry extends Module
     {
         $this->context->smarty->assign('message', $message);
         $this->html .= $this->context->smarty->fetch($this->local_path . 'views/templates/admin/alert-success.tpl');
+    }
+
+
+    /**
+     * Sets success message
+     * @param $message
+     */
+    protected function setErrorMessage($message)
+    {
+        $this->context->smarty->assign('message', $message);
+        $this->html .= $this->context->smarty->fetch($this->local_path . 'views/templates/admin/alert-danger.tpl');
     }
 }
