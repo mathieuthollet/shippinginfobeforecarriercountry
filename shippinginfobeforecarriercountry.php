@@ -39,7 +39,7 @@ class ShippingInfoBeforeCarrierCountry extends Module
     {
         $this->name = 'shippinginfobeforecarriercountry';
         $this->tab = 'checkout';
-        $this->version = '1.0.1';
+        $this->version = '1.0.2';
         $this->author = 'AWebVision';
         $this->need_instance = 0;
         $this->bootstrap = true;
